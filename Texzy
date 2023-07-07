@@ -1,0 +1,19 @@
+import requests
+from bs4 import BeautifulSoup
+
+def scrape_website(url):
+    response = requests.get(url)
+    soup = BeautifulSoup(response.content, 'html.parser')
+    
+    # Find elements on the webpage and extract data
+    title = soup.find('h1').text.strip()
+    paragraph = soup.find('p').text.strip()
+    
+    # Return the extracted data
+    return {'Title': title, 'Paragraph': paragraph}
+
+url = 'https://www.example.com'
+data = scrape_website(url)
+print(data)
+
+
